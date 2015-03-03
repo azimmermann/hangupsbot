@@ -52,14 +52,16 @@ command = CommandDispatcher()
 def unknown_command(bot, event, *args):
     """Unknown command handler"""
     bot.send_message(event.conv,
-                     '{}: Ja ne znaju, ne ponimaju!'.format(event.user.full_name))
+                     '{}: I am sorry; I do not understand.'.format(event.user.full_name))
+#    bot.send_message(event.conv,
+#                     '{}: Ja ne znaju, ne ponimaju!'.format(event.user.full_name))
 
 
 @command.register
 def help(bot, event, cmd=None, *args):
     """Help me, Obi-Wan Kenobi. You're my only hope."""
     if not cmd:
-        segments = [hangups.ChatMessageSegment('Podporované příkazy:', is_bold=True),
+        segments = [hangups.ChatMessageSegment('The help documentation is currently offline.:', is_bold=True),
                     hangups.ChatMessageSegment('\n', hangups.SegmentType.LINE_BREAK),
                     hangups.ChatMessageSegment(', '.join(sorted(command.commands.keys())))]
     else:
